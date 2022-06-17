@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/Validat0rs/fogg/pkg/fogg/handlers/rpc/types"
@@ -45,6 +46,8 @@ func (s *rpcSuite) SetUpSuite(c *C) {
 func (s *rpcSuite) TestStatus(c *C) {
 	r := httptest.NewRequest(http.MethodGet, "/status", nil)
 	w := httptest.NewRecorder()
+
+	_ = os.Setenv("RPC_HOST", s.rpcServer.URL)
 
 	s.rpc.Status(w, r)
 	res := w.Result()

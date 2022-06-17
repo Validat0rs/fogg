@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/Validat0rs/fogg/pkg/fogg/handlers/api/types"
@@ -41,6 +42,8 @@ func (s *apiSuite) SetUpSuite(c *C) {
 func (s *apiSuite) TestNodeInfo(c *C) {
 	r := httptest.NewRequest(http.MethodGet, "/node_info", nil)
 	w := httptest.NewRecorder()
+
+	_ = os.Setenv("API_HOST", s.apiServer.URL)
 
 	s.api.NodeInfo(w, r)
 	res := w.Result()
