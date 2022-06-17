@@ -52,7 +52,7 @@ type NodeInfo struct {
 type Result struct {
 	NodeInfo      NodeInfo      `json:"node_info"`
 	SyncInfo      SyncInfo      `json:"sync_info"`
-	ValidatorInfo ValidatorInfo `json:"validator_info"`
+	ValidatorInfo ValidatorInfo `json:"-"`
 }
 
 type Status struct {

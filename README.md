@@ -1,10 +1,17 @@
 # Fogg
 
-Obfuscate details returned by your Cosmos RPC and API endpoints for additional privacy. Currently `fogg` will hide your unique Node ID as well as the listen address. 
+Hide those attributes returned by your Cosmos RPC and API endpoints that could identify your node.
+
+## Overview
+
+Several Cosmos API and RPC endpoints return attributes that make it trivial to identify your node on the network, so `fogg` acts as a man in the middle in order to hide that information. Please see the following table for what is currently hidden with `fogg`:
+
+|Endpoint|Service|Hidden Attributes|
+|--------|-------|-----------------|
+|`/node_info`|API|`ID` and `ListenAddr`|
+|`/status`|RPC|`ID`, `ListenAddr` and `ValidatorInfo`.|
 
 ## Setup
-
-While we're assuming that you're using a reverse proxy (such as Nginx) in front of your API and RPC services, you should be able to use `fogg` in a way that best suits your particular deployment. Simply forward the traffic that's hitting the API endpoint `/node_info`, and the RPC endpoint `/status`, to your running `fogg` instance. 
 
 ### Golang
 
