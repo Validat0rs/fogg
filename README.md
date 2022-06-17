@@ -29,27 +29,39 @@ Before running `fogg`, please ensure that you have the following environment var
 
 ### Nginx
 
-If using Nginx, you can use the following configuration examples as a guide (please remember to set the port to whatever your `fogg` instance is listening on).
+If using Nginx, you can use the following configuration examples as a guide (please remember to set the port to whatever your `fogg` instance is listening on). 
+
+The examples should demonstrate how you can support both `fogg` and proxying everything else to the API and RPC services directly.
 
 For your API service:
 
 ```
-location /node_info {
+location / {
     proxy_set_header X-Forwarded-Host $host:$server_port;
     proxy_set_header X-Forwarded-Server $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_pass http://localhost:3000/api/node_info;
+        
+    location ~ /node_info {
+        proxy_pass http://localhost:3000/api/node_info;
+    }
+
+    proxy_pass http://localhost:1317;
 }
 ```
 
 and similarly for your RPC service:
 
 ```
-location /status {
+location / {
     proxy_set_header X-Forwarded-Host $host:$server_port;
     proxy_set_header X-Forwarded-Server $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_pass http://localhost:3000/rpc/status;
+        
+    location ~ /status {
+        proxy_pass http://localhost:3000/rpc/status;
+    }
+
+    proxy_pass http://localhost:26657;
 }
 ```
 
