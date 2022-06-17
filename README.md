@@ -19,7 +19,7 @@ If you are new to Golang, please follow the setup instructions [here](https://go
 
 ### Environment
 
-Before running the `fogg` service, please ensure that you have the following environment variables set:
+Before running `fogg`, please ensure that you have the following environment variables set:
 
 |Var|Description|
 |---|-----------|
