@@ -16,14 +16,14 @@ func (f *Fogg) SetHandlers() {
 
 func (f *Fogg) apiHandler() {
 	_api := api.NewApi(f.Monitoring.Logger)
-	f.HTTP.Router.Handle("/node_info", negroni.New(
+	f.HTTP.Router.Handle("/api/node_info", negroni.New(
 		negroni.Wrap(http.HandlerFunc(_api.NodeInfo)),
 	))
 }
 
 func (f *Fogg) rpcHandler() {
 	_rpc := rpc.NewRpc(f.Monitoring.Logger)
-	f.HTTP.Router.Handle("/status", negroni.New(
+	f.HTTP.Router.Handle("/rpc/status", negroni.New(
 		negroni.Wrap(http.HandlerFunc(_rpc.Status)),
 	))
 }

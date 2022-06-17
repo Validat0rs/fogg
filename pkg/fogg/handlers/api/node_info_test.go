@@ -40,7 +40,7 @@ func (s *apiSuite) SetUpSuite(c *C) {
 }
 
 func (s *apiSuite) TestNodeInfo(c *C) {
-	r := httptest.NewRequest(http.MethodGet, "/node_info", nil)
+	r := httptest.NewRequest(http.MethodGet, "/api/node_info", nil)
 	w := httptest.NewRecorder()
 
 	_ = os.Setenv("API_HOST", s.apiServer.URL)

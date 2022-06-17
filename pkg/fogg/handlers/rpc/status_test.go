@@ -44,7 +44,7 @@ func (s *rpcSuite) SetUpSuite(c *C) {
 }
 
 func (s *rpcSuite) TestStatus(c *C) {
-	r := httptest.NewRequest(http.MethodGet, "/status", nil)
+	r := httptest.NewRequest(http.MethodGet, "/rpc/status", nil)
 	w := httptest.NewRecorder()
 
 	_ = os.Setenv("RPC_HOST", s.rpcServer.URL)

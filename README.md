@@ -31,7 +31,7 @@ location /node_info {
     proxy_set_header X-Forwarded-Host $host:$server_port;
     proxy_set_header X-Forwarded-Server $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_pass http://localhost:3000/node_info;
+    proxy_pass http://localhost:3000/api/node_info;
 }
 ```
 
@@ -42,7 +42,7 @@ location /status {
     proxy_set_header X-Forwarded-Host $host:$server_port;
     proxy_set_header X-Forwarded-Server $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_pass http://localhost:3000/status;
+    proxy_pass http://localhost:3000/rpc/status;
 }
 ```
 
