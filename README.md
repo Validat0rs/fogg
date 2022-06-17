@@ -46,6 +46,24 @@ location /status {
 }
 ```
 
+## Run
+
+### Install
+
+To install the binary, run:
+
+```console
+make clean install
+```
+
+### Start
+
+To then to start the service:
+
+```console
+make run-fogg-service
+```
+
 ## Development
 
 ### Linter
